@@ -1,0 +1,51 @@
+﻿<Window x:Class="Bruno.WPF.AdicionarDados"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bruno.WPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="AdicionarDados" WindowState="Maximized"  WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="#B2000000" Loaded="Window_Loaded">
+    <Border Background="{DynamicResource MaterialDesignPaper}" Height="470" Width="600" >
+        <Grid>
+            <GroupBox x:Name="groupBox" Header="Cadastrar Novo Usuário" >
+
+                <GroupBox.HeaderTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <WrapPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="User" Height="32" Width="32" VerticalAlignment="Center" Foreground="White" />
+                                <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="{Binding}" Foreground="White"/>
+                            </WrapPanel>
+                            <Button Name="btnClose" Tag="Cancelar" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"   Click="btnClose_Click">
+                                <materialDesign:PackIcon Kind="WindowClose" Cursor="Hand"   Height="32" Width="32" Foreground="White" />
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </GroupBox.HeaderTemplate>
+                <WrapPanel Margin="10" HorizontalAlignment="Center">
+                    <Label Content="Nome:"></Label>
+                    <TextBox Name="txtNome" Text="{Binding dadosUsuario.Nome}" BorderThickness="1" Width="550" Height="30" FontSize="15"/>
+
+                    <Label Content="CPF:"></Label>
+                    <TextBox  Text="{Binding dadosUsuario.CPF}" Name="txtCPF" MaxLength="11" BorderThickness="1" Width="550" Height="30" FontSize="15" PreviewTextInput="NumberValidationTextBox"/>
+
+                    <Label Content="Email:"></Label>
+                    <TextBox Name="txtEmail" Text="{Binding dadosUsuario.Email}"  BorderThickness="1" Width="550" Height="30" FontSize="15"/>
+
+                    <Label Content="Telefone:"></Label>
+                    <TextBox Name="txtTelefone" Text="{Binding dadosUsuario.Telefone}" BorderThickness="1" Width="550" Height="30" FontSize="15"/>
+
+                    <Label Content="Sexo:"></Label>
+                    <ComboBox ItemsSource="{Binding listGenero}" Name="cmbSexo"  DisplayMemberPath="genero" SelectedValuePath="genero" SelectedValue="{Binding Path=genero, Mode=TwoWay}"  BorderThickness="1" Width="550" Height="30" FontSize="15"/>
+                    <Label Content="Data de Nascimento:"></Label>
+                    <TextBox  Name="txtDataNascimento" Text="{Binding dadosUsuario.DataNascimento, StringFormat={}{0:dd/MM/yyyy}, ConverterCulture=pt-Br}" MaxLength="10" BorderThickness="1"  Width="550" Height="30" FontSize="15" />
+                </WrapPanel>
+            </GroupBox>
+            <Button Name="btnCadastrar" Content="Cadastrar" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,24,10" Click="btnCadastrar_Click" />
+        </Grid>
+
+    </Border>
+</Window>

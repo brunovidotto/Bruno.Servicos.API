@@ -1,0 +1,58 @@
+﻿<Window x:Class="Bruno.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bruno.WPF"
+        mc:Ignorable="d"
+        Title="Bruno Vidotto Marins" WindowStyle="ToolWindow" WindowState="Maximized" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid Background="#FF3BA2FF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#FF3BA2FF" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Margin="20,0,0,0" Text="CRUD Usuários - Teste API" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" ></TextBlock>
+
+            <WrapPanel Orientation="Horizontal" Margin="0,0,20,0"  Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Content="Adicionar" Click="btnAdicionar_Click" />
+                <Button  Content="Sair" Margin="20,0,0,0" Click="BtnSair_Click"></Button>
+            </WrapPanel>
+
+
+        </Grid>
+
+        <Grid Grid.Row="1" >
+            <DataGrid Name="dtGridUsuarios" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding ListaDadosUsuario}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Editar" Click="btnEditar_Click"  />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Deletar" Click="btnExcluir_Click" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Nome" Binding="{Binding Nome}"/>
+                    <DataGridTextColumn Header="CPF" Binding="{Binding CPF, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Telefone" Binding="{Binding Telefone, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Sexo" Binding="{Binding Sexo, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Data de Nascimento" Binding="{Binding DataNascimento, StringFormat={}{0:dd/MM/yyyy}, Mode=TwoWay}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</Window>
